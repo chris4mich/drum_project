@@ -3,24 +3,17 @@ var numberOfDrums = document.querySelectorAll(".drum").length;
 for (var i = 0; i < numberOfDrums; i++) {
 
   document.querySelectorAll(".drum")[i].addEventListener("click", function() {
-
     var innerHtmlButton = this.innerHTML;
-
     makeSound(innerHtmlButton);
-
     buttonAnimation(innerHtmlButton);
-
+    triggerBuzzAnimation(innerHtmlButton);
   });
 }
 
-
-
 document.addEventListener("keypress", function(event) {
-
   makeSound(event.key);
-
   buttonAnimation(event.key);
-
+  triggerBuzzAnimation(event.key);
 });
 
 
@@ -56,18 +49,20 @@ function makeSound(key) {
       break;
     default:
       console.log(innerHtmlButton);
-
   }
 }
 
 function buttonAnimation(currentKey) {
-
     var activeButton = document.querySelector("." + currentKey);
-
     activeButton.classList.add("pressed");
-
     setTimeout (function() {
       activeButton.classList.remove("pressed");
     }, 100);
+}
 
+function triggerBuzzAnimation(currentKey) {
+  var activeButton = document.querySelector("." + currentKey);
+  activeButton.classList.remove("buzz-out-on-hover-trigger");
+  void activeButton.offsetWidth;
+  activeButton.classList.add("buzz-out-on-hover-trigger");
 }
