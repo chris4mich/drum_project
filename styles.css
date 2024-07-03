@@ -80,6 +80,7 @@ background-image: url('images/tom4.png');
   text-align: center;
   margin: 10px;
   background-color: white;
+  box-shadow: rgb(16, 61, 119) 2px 2px 5px;
 }
 
 
