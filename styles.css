@@ -83,7 +83,6 @@ background-image: url('images/tom4.png');
   box-shadow: rgb(16, 61, 119) 2px 2px 5px;
 }
 
-
 @-webkit-keyframes buzz-out-on-hover {
   10% {
     -webkit-transform: translateX(3px) rotate(2deg);
@@ -126,6 +125,7 @@ background-image: url('images/tom4.png');
     transform: translateX(-1px) rotate(0);
   }
 }
+
 @keyframes buzz-out-on-hover {
   10% {
     -webkit-transform: translateX(3px) rotate(2deg);
