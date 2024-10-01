@@ -5,7 +5,7 @@ body {
 }
 
 body[fullscreen] {
-  /* background-color: #283149; */
+  background-color: #283149;
   user-select: none;
   overflow: hidden;
 }

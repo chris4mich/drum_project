@@ -93,10 +93,18 @@ if (document.fullscreenEnabled) {
 
 function toggle_fullscreen() {
   if (!document.fullscreenElement) {
-      document.body.requestFullscreen();
-      document.body.setAttribute("fullscreen",""); 
+    document.body.requestFullscreen().then(() => {
+      document.body.setAttribute("fullscreen", "");
+      document.body.style.backgroundColor = "#283149"; 
+    }).catch((err) => {
+      console.log(`Error trying to enable fullscreen: ${err.message}`);
+    });
   } else {
-      document.exitFullscreen();
-      document.body.removeAttribute("fullscreen"); 
+    document.exitFullscreen().then(() => {
+      document.body.removeAttribute("fullscreen");
+      document.body.style.backgroundColor = ""; 
+    }).catch((err) => {
+      console.log(`Error trying to exit fullscreen: ${err.message}`);
+    });
   }
-} 
+}
