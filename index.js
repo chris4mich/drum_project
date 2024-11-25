@@ -16,7 +16,6 @@ document.addEventListener("keypress", function(event) {
   triggerBuzzAnimation(event.key);
 });
 
-
 function makeSound(key) {
   switch (key) {
     case "ς":
