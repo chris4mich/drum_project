@@ -1,7 +1,21 @@
 body {
   text-align: center;
-  background-color: #283149;
+  background: linear-gradient(135deg, #283149 0%, #1a1f2e 100%);
   user-select: none;
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.container {
+  padding: 20px;
+  position: relative;
+  z-index: 10;
 }
 
 body[fullscreen] {
@@ -14,14 +28,37 @@ h1 {
   font-size: 5rem;
   color: #DBEDF3;
   font-family: "Arvo", cursive;
-  text-shadow: 3px 0 #DA0463;
+  text-shadow: 3px 3px 0 #DA0463, 6px 6px 0 rgba(0,0,0,0.2);
+  margin-bottom: 30px;
 }
 
 footer {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #DBEDF3;
   font-family: "Arvo", cursive;
-  text-shadow: 3px 0 #DA0463;
+  text-shadow: 2px 0 #DA0463;
+  margin-top: 40px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+footer:hover {
+  opacity: 1;
+}
+
+#title {
+  font-size: 6rem;
+  color: #DBEDF3;
+  font-family: "Arvo", cursive;
+  text-shadow: 3px 3px 0 #DA0463, 6px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+.instructions {
+  color: #DBEDF3;
+  font-size: 1.2rem;
+  margin: 20px 0;
+  font-family: "Montserrat", sans-serif;
+  opacity: 0.8;
 }
 
 .w {
@@ -53,7 +90,11 @@ background-image: url('images/tom4.png');
 }
 
 .set {
-  margin: 10% auto;
+  margin: 5% auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
 }
 
 .game-over {
@@ -62,8 +103,9 @@ background-image: url('images/tom4.png');
 }
 
 .pressed {
-  box-shadow: 0 3px 4px 0 #DBEDF3;
-  opacity: 0.5;
+  box-shadow: 0 3px 15px 0 #DBEDF3;
+  opacity: 0.7;
+  transform: scale(0.95);
 }
 
 .red {
@@ -86,7 +128,33 @@ background-image: url('images/tom4.png');
   text-align: center;
   margin: 10px;
   background-color: white;
-  box-shadow: rgb(16, 61, 119) 2px 2px 5px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 
+              inset 0 -5px 10px rgba(0, 0, 0, 0.2),
+              0 0 15px rgba(219, 237, 243, 0.5);
+  transition: all 0.1s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.drum::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 50%);
+  pointer-events: none;
+}
+
+.drum:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4), 
+              inset 0 -5px 10px rgba(0, 0, 0, 0.2),
+              0 0 20px rgba(219, 237, 243, 0.7);
 }
 
 @-webkit-keyframes buzz-out-on-hover {
@@ -196,20 +264,23 @@ background-image: url('images/tom4.png');
 
 .box {
   position: fixed;
-  top: 0;
+  top: 300px;
   transform: rotate(80deg); 
   left: 0;
   z-index: -100;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .wave {
   position: absolute;
   opacity: .4;
-  width: 1000px;
-  height: 1300px;
-  margin-left: 150px;
-  margin-top: -1450px;
-  border-radius: 43%;
+  width: 2500px;
+  height: 1600px;
+  margin-left: -250px;
+  margin-top: -1050px;
+  border-radius: 53%;
 }
 
 @keyframes rotate {
@@ -243,10 +314,18 @@ background-image: url('images/tom4.png');
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
 }
 
 #fullscreen-button:hover {
   transform: scale(1.125);
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+#fullscreen-button svg {
+  fill: #DBEDF3;
 }
 
 #fullscreen-button svg:nth-child(2) { 
@@ -259,4 +338,37 @@ background-image: url('images/tom4.png');
 
 [fullscreen] #fullscreen-button svg:nth-child(2) {
   display: inline-block;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 3.5rem;
+  }
+  
+  .drum {
+    width: 120px;
+    height: 120px;
+    font-size: 4rem;
+  }
+  
+  .set {
+    margin: 10% auto;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  .drum {
+    width: 90px;
+    height: 90px;
+    font-size: 3rem;
+    margin: 5px;
+  }
+  
+  footer {
+    font-size: 1rem;
+  }
 }
